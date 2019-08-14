@@ -1,2 +1,4 @@
 SELECT * 
-FROM jobs;
+FROM jobs
+WHERE assigned_user IS NULL 
+;

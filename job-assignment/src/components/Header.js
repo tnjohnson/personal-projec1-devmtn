@@ -1,9 +1,13 @@
 import React from 'react';
-import Menu from './Menu';
+import './header.css';
+import { Link } from 'react-router-dom';
+
 
 function Header(props) {
     return <div className="header">
-        This is my Header <Menu />
+        {`Welcome ${props.user_name}!`}
+        <Link className="myJobsMenu" to='/jobs/grabbed'>My Jobs</Link>
+        <Link className="logOutMenu" to='/login' >Log Out</Link>
     </div>
 }
 

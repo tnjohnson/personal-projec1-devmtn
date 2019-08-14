@@ -1,73 +1,101 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 const getUnassignedJobsDb = async (req, res, next) => {
-    try {
-        let db = req.app.get('db')
-        // console.log('check', db)
+  try {
+    if(!req.session.user) return res.status(401).send('Please Log in')
+    let db = req.app.get("db");
+    // console.log('check', db)
     let unassignedJobsDb = await db.get_unassigned_jobs();
     res.send(unassignedJobsDb);
-    } 
-    catch(error){
-        console.log('error', error)
-    }
+  } catch (error) {
+    console.log("error", error);
+    res.status(500).send(error);
+  }
+};
+
+const getAssignedJobsDb = async (req, res, next) => {
+  try {
+    if(!req.session.user) return res.status(401).send('Please Log in')
+    let db = req.app.get("db");
+
+    let gotAssignedJobsDb = await db.get_assigned_jobs({userId: req.session.user.id});
+    console.log(gotAssignedJobsDb);
+    res.send(gotAssignedJobsDb);
+  } catch (error) {
+    console.log('Error', error);
+    res.status(500).send(error);
+  }
+}
+
+const assignJob = async (req, res, next) => {
+  try {
+    if(!req.session.user) return res.status(401).send('Please Log in')
+    // To Do : check permissions
+    const db = req.app.get("db");
+    const userId = req.body.userId;
+    const jobId = req.body.jobId;
+    let assignedJobsDb = await db.assign_job_to_user({userId, jobId});
+    res.send(assignedJobsDb);
+    
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
 }
 
 const loginToDb = async (req, res, next) => {
-    try {
-        const db = req.app.get('db')
-        const [user] = await db.users.find({ user_name: req.body.user_name });
-        console.log('check', user, req)
-        if (!user) return res.status(400).send('Please enter a valid Email and Password');
+  try {
+    const db = req.app.get("db");
+    const [user] = await db.users.find({ user_name: req.body.user_name });
+    // console.log("check", user);
+    if (!user)
+      return res.status(400).send("Please enter a valid Email and Password");
 
-        console.log(req.body.password.toString() === user.password)
-        const authenticated = req.body.password.toString() === user.password;
-        // Eventually use below code, and get rid of of the two lines above. user.password will need
-        //to be a hashed password. https://www.npmjs.com/package/bcrypt
-        // const authenticated = await bcrypt.compare(req.body.password.toString(), user.password);
-        if (!authenticated) return res.status(400).send('Please enter a valid Email and Password!!!');
+    const results = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!results)
+      return res.status(403).send("Please enter a valid Email and Password!!!");
 
-        delete user.password;
-        req.session.user = user;
+    delete user.password;
+    req.session.user = user;
 
-        return res.send('Successfully Logged In!')
-        
-    } catch (error) {
-        console.error(error)
-        res.status(500).send(error)
-    }
-}
+    return res.send(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+};
 
-const signUp =  async (req, res, next) => {
-    try {
-        const db = req.app.get('db')
+const signUp = async (req, res, next) => {
+  try {
+    const db = req.app.get("db");
 
-        const newUser = {
-            user_name: req.body.user_name,
-            password: req.body.password,
-            user_role: 3,
-            administrator: false
-        }
+    const hash = await bcrypt.hash(req.body.password, 10);
 
-        const user = await db.users.insert(newUser);
-        delete user.password
-        console.log(user)
-        res.send(user)
+    const newUser = {
+      user_name: req.body.user_name,
+      password: hash,
+      user_role: 3,
+      administrator: false
+    };
 
-    } catch (error) {
-        console.log(error)
-    }
-}
+    const user = await db.users.insert(newUser);
+    delete user.password;
+    console.log(user);
+    res.send(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+};
 
 module.exports = {
-    getUnassignedJobsDb,
-    loginToDb,
-    signUp,
+  getUnassignedJobsDb,
+  loginToDb,
+  signUp,
+  assignJob,
+  getAssignedJobsDb
+};
 
-}
-
-// Above is the code I'm using, below is the testing front end code NOT NEEDED NOW THAT ABOVE WORKS
-// const unassignedJobsDb = ['code', 'eat', 'test my code', 'see family'];
-
-// const getUnassignedJobsDb = (req, res) => {
-//     res.send(unassignedJobsDb);
-// }

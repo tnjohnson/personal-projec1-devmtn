@@ -5,13 +5,13 @@
 .header {
   width: 100vw;
   height: 50px;
-  background-color: #667761;
+  background-color: rgb(114, 114, 180);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  font-size: 22px;
 }
-
 
 .unassignedJobs {
   width: 100%;
@@ -45,15 +45,60 @@
   width: 75vw;
   border: 1px solid black;
   padding-top: 5px;
-  margin-top: 10px;
+  margin-top: 17px;
   background-color: lightblue;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  
+  border-radius: 20px;
+  box-shadow: 5px 5px 15px black;
+  cursor: pointer;
+
 }
 
 .displayedJobs button {
   right: 20px;
 }
 
+.MyJobsPage {
+  /* background: blue; */
+  height: 100vh;
+  background-image: url("aurora_northern_lights_4k.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.displayedAssignedJobs {
+  height: 50px;
+  width: 75vw;
+  border: 1px solid black;
+  padding-top: 5px;
+  margin-top: 17px;
+  background-color: lightblue;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 5px 5px 15px black;
+  cursor: pointer;
+}
+
+.assignedJobsWrapper {
+  background-image: url("aurora_northern_lights_4k.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: calc(100vh - 50px);
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.assignedJobsWrapper h1 {
+  font-size: 25px;
+  color: white;
+  padding: 15px;
+  text-decoration: underline gray;
+}

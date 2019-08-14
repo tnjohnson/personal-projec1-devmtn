@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 import "./reset.css";
 import "./login.css";
 
@@ -10,9 +11,9 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      user: []
     };
     this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
   componentDidMount() {
     document.title = "Login please";
@@ -25,24 +26,42 @@ class Login extends Component {
         password: this.state.password
       };
       if (body.user_name && body.password) {
-        const response = await axios.post("/signUp", body);
+        const response = await axios.post("/sign_up", body);
         alert("New user Successfully Added");
-        this.props.history.push("/mainPage");
+        this.props.history.push("/jobs/unassigned");
         console.log(response.data);
-        this.setState({ user: response.data });
+      } else {
+        alert("Please Enter a User Name and Password");
       }
     } catch (error) {
       console.error("error", error);
     }
   }
 
-  handleLogin() {
+  async handleLogin() {
     try {
-    } catch (error) {}
+      const body = {
+        user_name: this.state.username,
+        password: this.state.password
+      };
+      if (body.user_name && body.password) {
+        const response = await axios.post("/login", body);
+        // alert(`Welcome ${this.state.username}`);
+        
+        this.props.history.push("/jobs/unassigned");
+        // console.log(response.data);
+      } else {
+        alert("Please Enter a Valid User Name and Password");
+      }
+    
+
+    } catch (error) {
+      console.error("error", error)
+    }
   }
 
   render() {
-    // console.log(this.state);
+    // console.log(this.props);
     return (
       <div className="Login">
         <div className="LoginBox">
@@ -57,6 +76,7 @@ class Login extends Component {
           <div className="passwordInput">
             <input
               placeholder="Password"
+              type="password"
               onChange={event =>
                 this.setState({ password: event.target.value })
               }
@@ -76,4 +96,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
