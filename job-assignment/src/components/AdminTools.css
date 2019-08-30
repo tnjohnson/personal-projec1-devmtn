@@ -1,7 +1,9 @@
 .AdminToolWrapper {
     height: 250px;
     width: 400px;
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    box-shadow: 5px 5px 15px black;
+    border-radius: 20px;
     background-color: brown;
     display: flex;
     flex-direction: column;
@@ -11,14 +13,41 @@
 
 .AdminToolWrapper h1 {
     /* this works for the header */
+    
 }
 
 .AdminAddJob {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 175px;
+    
 }
 
-.AdminAssignJob {
-    border: 2px solid black;
+.AdminAddJob input {
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    margin: 10px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 15px black;
+}
+
+.AdminAddJob button {
+    height: 50px;
+    width: 150px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 15px black;
+}
+
+@media only screen and (max-width: 425px) {
+    .AdminToolWrapper {
+        width: 80vw;
+    }
+    .AdminAddJob {
+        width: 70vw;
+    }
 }

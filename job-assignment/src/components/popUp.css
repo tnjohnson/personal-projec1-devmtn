@@ -1,43 +1,115 @@
 .popUp {  
-    position: fixed;  
-    width: 100%;  
-    height: 100%;  
+    position: absolute;  
+    /* position: fixed; */
     top: 0;  
     left: 0;  
-    right: 0;  
-    bottom: 0;  
-    margin: auto;  
+    width: 100vw;
+    height: 100vh;
+    /* right: 0;  
+    bottom: 0;   */
+    /* margin: auto;   */
     background-color: rgba(0,0,0, 0.5);  
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }  
   .popUp_inner {  
-    position: absolute;  
-    left: 25%;  
+    position: relative;  
+    /* left: 25%;  
     right: 25%;  
     top: 25%;  
     bottom: 25%;  
-    margin: auto;  
+    margin: auto;   */
+    width: 500px;
+    height: 300px;
     border-radius: 20px;  
-    /* background: white;   */
+    background: white;  
     background-image: url("3d_dark_traingles.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     box-shadow: 5px 5px 15px black;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .popUp_inner h1 {
     font-weight: bold;
     font-size: 25px;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 9px;
+    margin-bottom: 9px;
     color: white;
   }
 
   .popUp_inner button {
     height: 25px;
     width: 150px;
-    margin: 75px 7px;
+    margin: 5px;
+    
+    /* margin: 45px 15px; */
     box-shadow: 5px 5px 15px black;
     border-radius: 20px;
   }
+
+  .popUp_inner input {
+    height: 25%;
+    width: 80%;
+    text-align: center;
+    margin-bottom: 7px;
+  }
+
+  .AdminAssignJob {
+    /* position: absolute; */
+    bottom: 6%;
+    width: 100%;
+    /* height: 100px; */
+    /* background-color: rgb(7, 7, 90, 0.5); */
+    border-radius: 20px;
+    
+  }
+  .AdminAssignJob select {
+    width: 150px;
+    height: 25px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 15px black;
+
+  }
+
+  .AdminAssignJob option {
+    /* find a way to make the drop down box look less stiff */
+    border-radius: 20px;
+    font-size: 15px;
+    
+    /* color: red; */
+  }
+  
+  .AdminAssignJob input {
+    width: 150px;
+    height: 25px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 15px black;
+    margin-left: 25px;
+    /* color: red; */
+  }
+
+  @media only screen and (max-width: 425px) {
+    
+    .popUp_inner {
+      width: 300px;
+      height: 400px;
+      /* right: 25%; */
+    }
+    .popUp_inner h1 {
+      margin-top: 10%;
+    }  
+ }
+
+ @media only screen and (max-width: 320px) {
+
+  .popUp_inner {
+    width: 275px;
+    height: 375px;
+  }
+ }

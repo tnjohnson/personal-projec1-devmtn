@@ -14,10 +14,21 @@ class Login extends Component {
     };
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
   componentDidMount() {
     document.title = "Login please";
+    document.addEventListener('keydown', this.handleKeyPress);
   }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyPress);
+  }
+
+handleKeyPress(event) {
+  if (event.keyCode === 13) {
+    this.handleLogin();
+  }
+}
 
   async handleSignUp() {
     try {
@@ -45,9 +56,8 @@ class Login extends Component {
         password: this.state.password
       };
       if (body.user_name && body.password) {
-        const response = await axios.post("/login", body);
+        await axios.post("/login", body);
         // alert(`Welcome ${this.state.username}`);
-        
         this.props.history.push("/jobs/unassigned");
         // console.log(response.data);
       } else {
@@ -71,7 +81,7 @@ class Login extends Component {
               onChange={event =>
                 this.setState({ username: event.target.value })
               }
-            />
+            /> 
           </div>
           <div className="passwordInput">
             <input

@@ -1,5 +1,5 @@
 .myJobsMenu {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     height: 50px;
     width: 175px;
     display: flex;
@@ -8,10 +8,38 @@
 }
 
 .logOutMenu {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     height: 50px;
     width: 175px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.Admin{
+    /* border: 2px solid black; */
+    height: 50px;
+    width: 175px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 425px) {
+    .welcomeUser {
+        width: 100vw;
+        margin-top: 10px;
+     }
+     .Admin{
+       width: 25%;
+     }
+     .myJobsMenu{
+      width: 25%;
+     }
+     .unassignedJobsMenu {
+      width: 25%;
+     }
+     .logOutMenu {
+      width: 25%;
+     }
 }

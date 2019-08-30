@@ -1,8 +1,9 @@
 import React from "react";
 
 function UnassignedJobs(props) {
-  // console.log('this is props in Unassigned',props)
-  let list = props.unassignedJobs.map((item, i) => {
+  // console.log('this is props in Unassigned',props.unassigned_jobs)
+  let list = props.unassigned_jobs.map((item, i) => {
+    // console.log('hey', item.id)
     return (
       <div
         className="displayedJobs"
@@ -17,9 +18,8 @@ function UnassignedJobs(props) {
   });
   return (
     <div
-      className="unassignedJobsWrapper2"
-      text="Prop of DOOM"
-      unassignedJobs={props.unassignedJobs}
+      className="jobsWrapper2"
+      // unassignedJobs={props.unassignedJobs}
     >
       <h1>{props.title}</h1>
       <h2>{list}</h2>

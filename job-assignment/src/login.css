@@ -10,6 +10,8 @@
     text-align: center;
   }
 
+
+
 .LoginBox {
     font-family: Arial, Helvetica, sans-serif;
     height: 400px;
@@ -79,4 +81,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media only screen and (max-width: 425px) {
+  .LoginBox {
+    width: 85%;
+  }
+  .username input {
+    width: 85%;
+  }
+  .passwordInput input{
+    width: 85%;
+  }
 }
