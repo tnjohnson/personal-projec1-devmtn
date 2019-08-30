@@ -34,11 +34,20 @@ app.get('/logged_in_user', (req, res) => {
 
 app.get('/unassigned_jobs', ctrl.getUnassignedJobsDb);
 app.get('/assigned_jobs', ctrl.getAssignedJobsDb);
+app.get('/get_user_list', ctrl.getUserList);
+app.get('/accomplished_jobs', ctrl.getAccomplishedJobsDb);
+
+app.get('/get_notes', ctrl.getNotesDB);
 
 app.post('/login', ctrl.loginToDb);
 app.post('/sign_up', ctrl.signUp);
-
 app.post('/my_jobs', ctrl.assignJob);
+app.post('/add_job', ctrl.addJob);
+app.post('/assign_job_admin', ctrl.assignJobAmin)
+app.post('/add_note', ctrl.addNote);
 
+app.patch('/complete_job/:id', ctrl.completeJob)
+
+app.delete('/remove_job/:id', ctrl.removeJobAdmin)
 
 app.listen(SERVER_PORT, () => console.log(`Listening on Port: ${SERVER_PORT}`));
