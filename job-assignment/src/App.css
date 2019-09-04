@@ -20,6 +20,10 @@
   
 }
 
+a {
+  color: black;
+}
+
 .jobsWrapper {
   /* background-color: brown; */
   background-image: url("aurora_northern_lights_4k.jpg");
@@ -31,6 +35,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
+  
 }
 
 .jobsWrapper h1 {

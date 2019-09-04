@@ -22,7 +22,8 @@ class PopUp2 extends Component {
       if (body.newNote) {
         await axios.post("/add_note", body);
         this.setState({ newNote: "" });
-        this.props.togglePopUp2(0);
+        this.props.refreshNote();
+        // this.props.togglePopUp2(0);
       } else {
         alert("Note cannot be blank!");
       }
@@ -44,8 +45,11 @@ class PopUp2 extends Component {
     }
   }
 
+
+
   render() {
-    // console.log('FIND ME',this.props.getAssigned)
+    // console.log('FIND ME',this.props.assigned_jobs)
+    // console.log(this.props.currentJobId)
     const job = this.props.assigned_jobs.find(item => {
       return item.job_id === this.props.currentJobId;
     });
@@ -62,7 +66,13 @@ class PopUp2 extends Component {
           <button onClick={() => this.addNote(this.props.currentJobId)}>
             Submit Notes
           </button>
-          <button>View Notes</button>
+
+          <button
+            onClick={() => this.props.togglePopUp4(this.props.currentJobId)}
+          >View Notes</button>
+          {/* having a hard time figuring out what to put in here.  Though it was item.id */}
+
+
           <button onClick={this.jobCompleted}>Job Completed</button>
           <button onClick={() => this.props.togglePopUp2(0)}>Close</button>
         </div>

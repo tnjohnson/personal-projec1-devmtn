@@ -57,7 +57,6 @@ class AdminSummary extends Component {
         {this.state.showPopUp3Admin && (
           <PopUp3Admin
             togglePopUp3={this.togglePopUp3}
-            // showPopUp3Admin={this.state.showPopUp3Admin}
             currentJobId={this.state.currentJobId}
             accomplished_jobs={this.state.accomplishedJobs}
             notes={this.state.notes}

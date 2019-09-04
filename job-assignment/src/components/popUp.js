@@ -98,7 +98,6 @@ class PopUp extends Component {
           >
             Grab This Job
           </button>
-          <button onClick={() => this.props.togglePopUp(0)}>Close</button>
           {/* in the middle of a react app, cant use an IF statement, but you can use
           a ternary */}
           {this.props.isAdmin ? (
@@ -120,6 +119,7 @@ class PopUp extends Component {
               <button onClick={this.handleRemoveJob}>Delete</button>
             </div>
           ) : null}
+          <button onClick={() => this.props.togglePopUp(0)}>Close</button>
         </div>
       </div>
     );

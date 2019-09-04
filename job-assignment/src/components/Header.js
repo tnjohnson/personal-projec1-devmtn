@@ -1,6 +1,7 @@
 import React from "react";
 import "./header.css";
 import { Link, withRouter } from "react-router-dom";
+import axios from "axios";
 
 function Header(props) {
   // console.log("Header!", props.location.pathname);
@@ -26,9 +27,12 @@ function Header(props) {
         </Link>
       )}
 
-      <Link className="logOutMenu" to="/login">
+      <div className="logOutMenu" onClick={async() => {
+        await axios.post('/logout')
+        props.history.push('/login')
+      }}>
         Log Out
-      </Link>
+      </div>
     </div>
   );
 }

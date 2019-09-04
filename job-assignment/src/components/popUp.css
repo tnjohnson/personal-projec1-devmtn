@@ -32,7 +32,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: auto;
+    /* overflow: hidden; */
   }
+
+  ::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  Optional: just make scrollbar invisible
+  }
+/* Optional: show position indicator in red */
+  ::-webkit-scrollbar-thumb {
+    background: #FF0000;
+  }
+
+
+
 
   .popUp_inner h1 {
     font-weight: bold;
@@ -40,6 +54,16 @@
     text-align: center;
     margin-top: 9px;
     margin-bottom: 9px;
+    color: white;
+  }
+
+  .popUp_inner h2 {
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+    text-decoration: underline;
+    /* margin-top: 9px; */
+    margin-bottom: 3px;
     color: white;
   }
 
@@ -94,6 +118,13 @@
     /* color: red; */
   }
 
+.displayedNotes {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 40px;
+  color: white;
+}
+
   @media only screen and (max-width: 425px) {
     
     .popUp_inner {
@@ -107,7 +138,7 @@
  }
 
  @media only screen and (max-width: 320px) {
-
+ 
   .popUp_inner {
     width: 275px;
     height: 375px;
