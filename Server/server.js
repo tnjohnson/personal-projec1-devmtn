@@ -13,6 +13,8 @@ app.use(cors({
     credentials: true
 }));
 
+app.use(express.static(path.join(__dirname, 'client', 'build')))
+
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 
 app.use(
@@ -53,4 +55,8 @@ app.patch('/complete_job/:id', ctrl.completeJob)
 
 app.delete('/remove_job/:id', ctrl.removeJobAdmin)
 
-app.listen(SERVER_PORT, () => console.log(`Listening on Port: ${SERVER_PORT}`));
+
+
+app.listen(process.env.PORT || 8080, () => console.log(`Listening on Port: ${process.env.PORT}`))
+
+// app.listen(SERVER_PORT, () => console.log(`Listening on Port: ${SERVER_PORT}`));
