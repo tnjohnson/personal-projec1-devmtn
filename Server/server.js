@@ -36,10 +36,13 @@ app.get('/unassigned_jobs', ctrl.getUnassignedJobsDb);
 app.get('/assigned_jobs', ctrl.getAssignedJobsDb);
 app.get('/get_user_list', ctrl.getUserList);
 app.get('/accomplished_jobs', ctrl.getAccomplishedJobsDb);
-
 app.get('/get_notes', ctrl.getNotesDB);
 
 app.post('/login', ctrl.loginToDb);
+app.post('/logout', (req, res) => {
+    delete req.session.user 
+    return res.send('ok')
+})
 app.post('/sign_up', ctrl.signUp);
 app.post('/my_jobs', ctrl.assignJob);
 app.post('/add_job', ctrl.addJob);
